@@ -17,9 +17,18 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.get("/:id/:name", (req, res) => {
-  const { name, id } = req.params;
-  res.send(`${name} ${id}`);
+router.get("/:id/comments", (req, res) => {
+  const { id } = req.params;
+
+  const photos = JSON.parse(fs.readFileSync("./data/photos.json"));
+
+  const foundPhoto = photos.find((photo) => photo.id === id);
+
+  if (foundPhoto) {
+    res.json(foundPhoto.comments);
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 export default router;
