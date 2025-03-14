@@ -3,6 +3,12 @@ import fs from "fs";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  const photos = JSON.parse(fs.readFileSync("./data/photos.json"));
+
+  res.json(photos);
+});
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
