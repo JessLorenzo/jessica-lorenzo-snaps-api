@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/photos", photosRouter);
 app.use("/tags", tagsRouter);
+app.use("/static", express.static("public/images"));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
